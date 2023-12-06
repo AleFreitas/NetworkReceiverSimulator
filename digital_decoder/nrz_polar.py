@@ -1,3 +1,19 @@
+# ESSA FUNÇÃO ESTÁ AQUI APENAS PARA RODAR OS TESTES
+def _nrz_polar(bits, amplitude=1):
+    result = []
+    for bit in bits:
+        if int(bit) > 0:
+            # cria uma lista com 100 elementos (amplitude) por bit
+            # depois adiciona ao result
+            # FORAM ESCOLHIDOS 100 DE CADA POR BIT DE FORMA TOTALMENTE ARBITRÁRIA
+            # poderia ter sido feito só com result.extend([amplitude]) mas com
+            # menos amostras o gráfico teria transições menos claras visualmente
+            result.extend([amplitude] * 100)
+        else:
+            result.extend([-amplitude] * 100)
+    return result
+
+
 def nrz_polar_decoder(signal):
     decoded_bits = []
 
@@ -16,3 +32,10 @@ def nrz_polar_decoder(signal):
 
     # converte cada bit inteiro dentro da lista em string e junta em uma unica string
     return ''.join(map(str, bit_stream))
+
+sinal_codificado = _nrz_polar('01010011')
+decoded_bits = nrz_polar_decoder(sinal_codificado)
+
+print("Bits originais:", '01010011')
+print("Sinal codificado:", sinal_codificado)
+print("Bits decodificados:", decoded_bits)
