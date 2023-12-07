@@ -15,7 +15,7 @@
     
 #     return result
 
-def manchester_decoder(signal, amplitude):
+def manchester_decoder(signal):
     encoded_bits = [] # recebe o sinal e retira as repetições das amostras
     
     manchester_bit = [] # como o manchester codifica dois bits pra cada bit essa variavel só pode ir até len 2 antes de incluido e apagado
@@ -48,7 +48,7 @@ def manchester_decoder(signal, amplitude):
 # amplitude_sinal = 1.0
 
 # sinal_codificado = manchester(bits_originais, amplitude_sinal)
-# decoded_bits = manchester_decoder(sinal_codificado, amplitude_sinal)
+# decoded_bits = manchester_decoder(sinal_codificado)
 
 # print("Bits originais:", bits_originais)
 # print("Sinal codificado:", sinal_codificado)
