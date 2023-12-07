@@ -1,24 +1,27 @@
-# DESCOMENTE ESSA FUNÇÃO CASO QUEIRA TESTAR RODANDO UM make nrz
-# def _nrz_polar(bits, amplitude=1):
+# DESCOMENTE ESSA FUNÇÃO CASO QUEIRA TESTAR RODANDO UM make bipolar
+# def bipolar(bits, amplitude):
 #     result = []
+#     current_polarity = amplitude
+
 #     for bit in bits:
 #         if int(bit) > 0:
 #             # cria uma lista com 100 elementos (amplitude) por bit
 #             # depois adiciona ao result
 #             # FORAM ESCOLHIDOS 100 DE CADA POR BIT DE FORMA TOTALMENTE ARBITRÁRIA
-#             # poderia ter sido feito só com result.extend([amplitude]) mas com
+#             # poderia ter sido feito só com result.extend([current_polarity]) mas com
 #             # menos amostras o gráfico teria transições menos claras visualmente
-#             result.extend([amplitude] * 100)
+#             result.extend([current_polarity] * 100)
+#             current_polarity = -current_polarity
 #         else:
-#             result.extend([-amplitude] * 100)
+#             result.extend([0] * 100)
+
 #     return result
 
-
-def nrz_polar_decoder(signal):
+def bipolar_decoder(signal):
     decoded_bits = []
 
     for sample in signal:
-        if sample > 0:
+        if sample != 0:
             decoded_bits.append(1)
         else:
             decoded_bits.append(0)
@@ -33,10 +36,14 @@ def nrz_polar_decoder(signal):
     # converte cada bit inteiro dentro da lista em string e junta em uma unica string
     return ''.join(map(str, bit_stream))
 
-# DESCOMENTE TUDO ABAIXO CASO QUEIRA TESTAR RODANDO UM make nrz
-# sinal_codificado = _nrz_polar('01010011')
-# decoded_bits = nrz_polar_decoder(sinal_codificado)
+# DESCOMENTE TUDO ABAIXO CASO QUEIRA TESTAR RODANDO O make bipolar
+# # Exemplo de uso:
+# bits_originais = '010101'
+# amplitude_sinal = 1.0
 
-# print("Bits originais:", '01010011')
+# sinal_codificado = bipolar(bits_originais, amplitude_sinal)
+# decoded_bits = bipolar_decoder(sinal_codificado)
+
+# print("Bits originais:", bits_originais)
 # print("Sinal codificado:", sinal_codificado)
 # print("Bits decodificados:", decoded_bits)
