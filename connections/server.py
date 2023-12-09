@@ -3,7 +3,7 @@ import threading
 import pickle
 
 def config():
-    HEADER = 4
+    HEADER = 64
     PORT = 5051
     SERVER = socket.gethostbyname(socket.gethostname())
     ADDR = (SERVER, PORT)
@@ -36,3 +36,7 @@ def start(serverData):
         thread = threading.Thread(target=handle_client, args=(conn, addr, serverData))
         thread.start()
         print(f"Conexões Ativas {threading.active_count() - 1}")
+
+
+ServerData = config()
+start(ServerData)

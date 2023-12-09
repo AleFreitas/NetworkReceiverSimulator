@@ -2,7 +2,7 @@ import socket
 import threading
 import pickle
 def connect(dst):
-    HEADER = 4
+    HEADER = 64
     PORT = {'transmissor': 5050, 'receptor': 5051, 'interface': 5052}
     FORMAT = "utf-8"
     SERVER = socket.gethostbyname(socket.gethostname())
