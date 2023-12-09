@@ -35,4 +35,4 @@ def start(serverData):
         conn, addr =  serverData['server'].accept()
         thread = threading.Thread(target=handle_client, args=(conn, addr, serverData))
         thread.start()
-        print(f"Conexões Ativas {threading.activeCount() - 1}")
+        print(f"Conexões Ativas {threading.active_count() - 1}")
