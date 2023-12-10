@@ -28,8 +28,8 @@ def handle_client(conn, addr, serverData):
             msg = pickle.loads(serialized_msg)
             if msg == serverData['DISCONNECT_MESSAGE']:
                 connect = False
-                codificar(lista_de_mensagens)
-            lista_de_mensagens.append(msg)
+            else:
+                codificar(msg)
 
     conn.close()
 

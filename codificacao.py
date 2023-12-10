@@ -11,8 +11,7 @@ def codificar(opcoes):
         'Bipolar': bipolar_decoder,
     }
 
-    print(opcoes[0])
-    signal = encoding_dict[opcoes[0][0]](opcoes[0][1])
+    signal = encoding_dict[opcoes[1]](opcoes[0])
     clientData = client.connect('interface')
     client.send(signal, clientData)
     client.disconnect(clientData)
