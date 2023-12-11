@@ -14,3 +14,6 @@ def alterar_um_bit_aleatoriamente(bits):
     bits_alterados = ''.join(bits_mutaveis)
 
     return bits_alterados
+
+def mensagem_sem_erro(signal):
+    return signal

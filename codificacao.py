@@ -4,6 +4,7 @@ from digital_decoder.manchester import manchester_decoder
 import connections.client as client
 from paridade import *
 from gerador_erro import *
+from hamming import *
 
 def codificar(opcoes):
     # Opções de Decodificação Digital
@@ -15,13 +16,16 @@ def codificar(opcoes):
     # Opções de Verificação de Erro
     erro_dict = {
         'PAR': verificar_bit_parity,
-        'SIM': alterar_um_bit_aleatoriamente
-        ## 'CRC' : funcao_CRC
+        'HAM': verify_hamming,
+        'SIM': alterar_um_bit_aleatoriamente,
+        'NAO': mensagem_sem_erro
     }
 
     lista_interface = []                                    # Cria a lista para enviar os dados
     signal = encoding_dict[opcoes[1]](opcoes[0])            # Faz a decodificação do Sinal
-    mensagem_erro = erro_dict[opcoes[3]](signal)
+
+    mensagem_erro = erro_dict[opcoes[3]](signal)            # Inclui ERRO ou não na mensagem
+
     mensagem, erro = erro_dict[opcoes[2]](mensagem_erro)    # Retira o bit de paridade e retorna o Erro
 
     lista_interface.append(mensagem)                        # Adiciona os dados a lista

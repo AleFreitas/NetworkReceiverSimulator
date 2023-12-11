@@ -1,21 +1,27 @@
+#Bibliotecas Utilizadas
 import socket
 import threading
 import pickle
-from codificacao import codificar
 import random
 
+#Modulos
+from codificacao import codificar
+
+# Cria a Configuração do Servidor
 def config():
-    HEADER = 64
-    PORT = 5051
-    SERVER = socket.gethostbyname(socket.gethostname())
+    HEADER = 64                                             # Tamanho Máximo da Mensagem
+    PORT = 5051                                             # Porta Host
+    SERVER = socket.gethostbyname(socket.gethostname())     # Seleciona o IP Local
     ADDR = (SERVER, PORT)
     DISCONNECT_MESSAGE = "Desconectar"
     FORMAT = "utf-8"
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(ADDR)
     serverData = {"HEADER": HEADER, "FORMAT": FORMAT, "server": server, "ip": SERVER, "DISCONNECT_MESSAGE": DISCONNECT_MESSAGE}
-    return serverData
+    return serverData                                        # Retorna todas as informações necessárias do server
 
+
+# Função Responsável por receber as mensagens // Funciona por Thread
 def handle_client(conn, addr, serverData):
     print('Nova Conexão!')
     connect = True
@@ -29,10 +35,11 @@ def handle_client(conn, addr, serverData):
             if msg == serverData['DISCONNECT_MESSAGE']:
                 connect = False
             else:
-                codificar(msg)
+                codificar(msg)          # Decodifica as mensagens
 
     conn.close()
 
+# Função para Iniciar o Servidor
 def start(serverData):
     serverData['server'].listen()
     print(f"O servidor está ouvindo em {serverData['ip']}")

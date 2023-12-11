@@ -20,7 +20,21 @@ def menor_quantidade_potencias_de_dois(x):
 
     return elementos
 
+def remover_indices_potencia_de_2(bits_lista):
+    # Encontrar índices de potência de 2 na lista de bits
+    indices_potencia_de_2 = [i for i in range(len(bits_lista)) if (i + 1) & (i) == 0]
+
+    # Remover os bits nos índices de potência de 2
+    mensagem_sem_potencia_de_2 = [bit for i, bit in enumerate(bits_lista) if i not in indices_potencia_de_2]
+
+    return mensagem_sem_potencia_de_2
+
 def verify_hamming(hamming_bits):
+    lista_de_caracteres = []
+    for caractere in hamming_bits:
+        caractere = int(caractere)
+        lista_de_caracteres.append(caractere)
+    hamming_bits = lista_de_caracteres
     # criando as relações dos bits verificadores
     i = 1
     number_of_verifiers = []
@@ -53,8 +67,6 @@ def verify_hamming(hamming_bits):
             hamming_bits[number - 1] = 1
         else:
             hamming_bits[number - 1] = 0
-    return hamming_bits
-
-hamming = [0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1]
-verified = verify_hamming(hamming)
-print(verified)
+    hamming_bits =  remover_indices_potencia_de_2(hamming_bits)
+    erro_encontrado = f"Erro Encontrado e Corrigido: Posição {number}"
+    return hamming_bits, erro_encontrado
