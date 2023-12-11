@@ -49,7 +49,6 @@ def verify_hamming(hamming_bits):
             for z in verify_positions:
                 verify_position_dict[z].append(hamming_bits[i-1])
             i+=1
-    
     error_index_in_bits = []
     for i in range(len(number_of_verifiers)): 
         error_index_in_bits.append(0 if sum(verify_position_dict[number_of_verifiers[i]]) % 2 == 0 else 1)
@@ -67,6 +66,9 @@ def verify_hamming(hamming_bits):
             hamming_bits[number - 1] = 1
         else:
             hamming_bits[number - 1] = 0
-    hamming_bits =  remover_indices_potencia_de_2(hamming_bits)
-    erro_encontrado = f"Erro Encontrado e Corrigido: Posição {number}"
+        hamming_bits = remover_indices_potencia_de_2(hamming_bits)
+        erro_encontrado = f"Erro Encontrado e Corrigido: Posição {number}"
+    else:
+        hamming_bits = remover_indices_potencia_de_2(hamming_bits)
+        erro_encontrado = f"Não possui erros"
     return hamming_bits, erro_encontrado

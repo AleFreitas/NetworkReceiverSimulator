@@ -33,6 +33,7 @@ def codificar(opcoes):
 
     clientData = client.connect('interface')             # Cria a conexão com a interface e envia os dados
     client.send(mensagem, clientData)
+    print(f"Enviado {mensagem}")
     client.send(erro, clientData)
     client.disconnect(clientData)
 
